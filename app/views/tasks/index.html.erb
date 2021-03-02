@@ -3,10 +3,15 @@
 
   <ul>
     <% @tasks.each do |t| %>
-      <li> ☐ <%= link_to t.title, task_path(t) %> </li>
+      <% icon = t.completed ? '☑' : '☐' %>
+      <div class="d-flex">
+        <li> <%= icon %> <%= link_to t.title, task_path(t) %> </li>
+        <%= link_to destroy_path(t), method: :delete do %>
+          <i class="fa fa-ban" aria-hidden="true"></i>
+        <% end%>
+      </div>
     <% end %>
   </ul>
 
   + <%= link_to "Add a new task", new_task_path %>
-
 </div>
